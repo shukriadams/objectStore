@@ -1,0 +1,24 @@
+{
+    "name": "objectstore",
+    "license": "UNLICENSED",
+    "description": "Stores objects.",
+    "repository": "https://github.com/shukriadams/objectstore",
+    "scripts": {
+      "start": "node index",
+      "debug": "node --inspect=0.0.0.0:3001 index",
+      "debug-break": "node --inspect-brk=0.0.0.0:3001 index",
+      "dev": "node ./develop/run.js"
+    },
+    "devDependencies": {
+      "chokidar": "2.1.5",
+      "cross-spawn": "6.0.5",
+      "node-sass-runner": "https://github.com/shukriadams/node-sass-runner.git#0.0.5"
+    },
+    "dependencies": {
+      "custom-env": "1.0.0",
+      "js-yaml": "3.13.1",
+      "express": "4.16.3",
+      "mongodb": "3.6.6"
+    }
+  }
+  
