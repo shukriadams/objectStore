@@ -1,3 +1,4 @@
 src/node_modules
 vagrant/.vagrant
 src/yarn-error.log
+src/settings.yml

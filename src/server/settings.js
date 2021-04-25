@@ -1,5 +1,3 @@
-console.log("!!!! SETTINGS LOADED")
-
 let process = require('process'),
     fs = require('fs-extra'),
     customEnv = require('custom-env'),
@@ -7,6 +5,12 @@ let process = require('process'),
     settings = {
         // port Express listens on
         port : 5000,
+
+        poolSize : 10,
+
+        connectionString : null,
+
+        db : null
     }
 
 // Load settings from YML file, merge with default settings

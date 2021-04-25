@@ -7,7 +7,7 @@ module.exports = function(express){
      */
     express.get('/', async function (req, res) {
         try {
-            res.send('ready')
+            res.send('Object Store')
 
         } catch(ex){
             showError(res, ex)
