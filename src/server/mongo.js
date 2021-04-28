@@ -1,8 +1,8 @@
 const settings = require(_$+'settings'),
-    MongoClient = require('mongodb').MongoClient,
-    ObjectID = require('mongodb').ObjectID
+    MongoClient = require('mongodb').MongoClient
 
 module.exports = {
+
     /** 
      * Gets a mongo collection, and db instance for closing.
      */
@@ -117,15 +117,6 @@ module.exports = {
                 // if an id is corrupt/ invalid we don't want objectId to throw a parse error
                 // and derail entire call - an invalid id should be treated as "not found"
                 // which is a null return
-                try {
-                    id = new ObjectID(id)
-                }catch(ex){
-                    if (options.expected)
-                        return reject(`Expected record id ${id} from table ${collectionName} not found`)
-
-                    resolve(null)
-                }
-
                 const mongo = await this.getCollection(collectionName)
                 mongo.collection.findOne({ _id : id },(err, record)=>{
                     if (err)
