@@ -13,6 +13,7 @@ global._$ = `${__dirname}/server/`;
     express.use(Express.static('./static'))
     express.use(bodyParser.urlencoded({ }))
     express.use(bodyParser.json())
+    express.set('json spaces', 4)
 
     // bind routes, default last
     itemRoute(express)

@@ -58,9 +58,17 @@ module.exports = function(express){
     /**
      * 
      */
-    express.get('/v1/item', async (req, res) => {
+    express.get('/v1/item/:key', async (req, res) => {
         try {
+            const obj = await mongo.getById('items', req.params.key)
+            if (!obj){
+                res.status(404)
+                res.end(`No object found for key ${req.params.key}`)
+                return
+            }
 
+            res.json(obj)
+            
         } catch(ex){
             showError(res, ex)
         }
