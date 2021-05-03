@@ -33,7 +33,7 @@ module.exports = function(express){
      */
     express.post('/v1/item/:key', async (req, res) => {
         try {
-            let tags = (req.query.tags || '').split(',').filter(tag => !!tag),
+            let tags = decodeURI((req.query.tags || '')).split(',').filter(tag => !!tag),
                 signature =  generateObjectSignature(req.body)
 
             if (!req.body)
