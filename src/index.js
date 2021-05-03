@@ -8,7 +8,10 @@ global._$ = `${__dirname}/server/`;
         settings = require(_$+'settings'),
         defaultRoute = require(_$+'routes/default'),
         itemRoute = require(_$+'routes/item'),
+        mongo = require(_$+'mongo'),
         express = Express()
+
+    await mongo.initialize()        
 
     express.use(Express.static('./static'))
     express.use(bodyParser.urlencoded({ }))

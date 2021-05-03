@@ -40,6 +40,9 @@ module.exports = {
                         return reject(err)
 
                     // add setup here
+                    const db = client.db(settings.db)
+
+                    await db.collection('items').createIndex( { signature: 1, tags : 1  }, { unique: false, name : `items_lookup_performance` })
 
                     client.close()
                     resolve()
