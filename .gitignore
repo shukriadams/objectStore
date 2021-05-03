@@ -2,3 +2,5 @@ src/node_modules
 vagrant/.vagrant
 src/yarn-error.log
 src/settings.yml
+build/.clone
+build/build.tar.gz

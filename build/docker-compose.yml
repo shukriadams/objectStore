@@ -1,0 +1,13 @@
+# this is for test mounting built images on your local dev env. container names should not clash
+# with dev resources
+version: "2"
+services:
+    objectstore:
+        image: shukriadams/objectstore:latest
+        container_name: objectstore
+        ports:
+        - "5010:5000"
+        environment:
+          connectionString: mongodb://root:example@127.0.0.1:27017
+          db: objectstore        
+        #command: /bin/sh -c  "while true ;sleep 5; do continue; done"

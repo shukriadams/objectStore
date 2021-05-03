@@ -28,13 +28,13 @@ rm -rf .clone/src/node_modules
 TAG=$(git describe --abbrev=0 --tags)
 
 if [ -z $TAG ]; then
-   echo "ERROR : tag not set.";
-   exit 1;
+   echo "ERROR : tag not set."
+   exit 1
 fi
 
 
 # install with --no-bin-links to avoid simlinks, this is needed to copy build content around
-docker run -v $(pwd)/.clone/src:/tmp/build $BUILDCONTAINER sh -c 'cd /tmp/build/ && npm install --no-bin-links'
+docker run -v $(pwd)/.clone/src:/tmp/build $BUILDCONTAINER sh -c 'cd /tmp/build/ && yarn --no-bin-links'
 
 # zip the build up
 tar -czvf ./build.tar.gz .clone/src 
@@ -44,13 +44,14 @@ docker tag $CONTAINERNAME:latest $CONTAINERNAME:$TAG
 
 # smoke test 
 if [ $SMOKETEST -eq 1 ]; then
-    ./smoketest.sh
+    RESULT=$(docker run shukriadams/objectstore:latest bash -c "sleep 5 && curl localhost:5000")
+    echo $RESULT
 fi
 
 if [ $DOCKERPUSH -eq 1 ]; then
     docker login -u $DOCKER_USER -p $DOCKER_PASS 
     docker push $CONTAINERNAME:$TAG 
-    echo "Container pushed to docker hub";
+    echo "Container pushed to docker hub"
 fi
 
-echo "Build done";
+echo "Build done"
